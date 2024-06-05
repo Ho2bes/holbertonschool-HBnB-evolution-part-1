@@ -3,75 +3,72 @@
 
 
 class Place:
-    """class place with his methods"""
+    """Classe représentant un lieu."""
     def __init__(self, location, number_guests, number_rooms):
-        self._location = location
-        self._number_guests = number_guests
-        self._number_rooms = number_rooms
-        self._reviews = []
-        self._amenities = []
-        self._description = ""
-        self._availability = True
-
-    @property
-    def location(self):
-        return self._location
-
-    @location.setter
-    def location(self, value):
-        self._location = value
-
-    @property
-    def number_guests(self):
-        return self._number_guests
-
-    @number_guests.setter
-    def number_guests(self, value):
-        self._number_guests = value
-
-    @property
-    def number_rooms(self):
-        return self._number_rooms
-
-    @number_rooms.setter
-    def number_rooms(self, value):
-        self._number_rooms = value
-
-    @property
-    def reviews(self):
-        return self._reviews
-
-    @property
-    def amenities(self):
-        return self._amenities
-
-    @property
-    def description(self):
-        return self._description
-
-    @description.setter
-    def description(self, value):
-        self._description = value
-
-    @property
-    def availability(self):
-        return self._availability
-
-    @availability.setter
-    def availability(self, value):
-        self._availability = value
+        self.location = location
+        self.number_guests = number_guests
+        self.number_rooms = number_rooms
+        self.reviews = []
+        self.amenities = []
+        self.description = ""
+        self.availability = True
+        self.host = None  # Nouvel attribut pour stocker l'hôte du lieu
 
     def add_review(self, review):
-        self._reviews.append(review)
-
-    def add_amenity(self, amenity):
-        self._amenities.append(amenity)
-
-    def toggle_availability(self):
-        self._availability = not self._availability
+        """Ajoute un commentaire."""
+        self.reviews.append(review)
 
     def calculate_total_price(self, nightly_rate):
-        return nightly_rate * self._number_guests  # Supposons que le prix soit calculé par nuit
+        """Calcule le prix total."""
+        return nightly_rate * self.number_guests  # Supposons que le prix soit calculé par nuit
+
+    def list_amenities(self):
+        """Liste les équipements."""
+        return self.amenities
+
+    def check_availability(self):
+        """Vérifie la disponibilité."""
+        return self.availability
 
     def list_reviews(self):
-        return self._reviews
+        """Liste les commentaires."""
+        return self.reviews
+
+    def set_number_guests(self, number):
+        """Définit le nombre d'invités."""
+        self.number_guests = number
+
+    def add_description(self, description):
+        """Ajoute une description."""
+        self.description = description
+
+    def set_number_rooms(self, number):
+        """Définit le nombre de chambres."""
+        self.number_rooms = number
+
+    def set_location(self, location):
+        """Définit l'emplacement."""
+        self.location = location
+
+    def add_amenity(self, amenity):
+        """Ajoute un équipement."""
+        self.amenities.append(amenity)
+
+    def toggle_availability(self):
+        """Bascule la disponibilité."""
+        self.availability = not self.availability
+
+    def get_description(self):
+        """Récupère la description."""
+        return self.description
+
+    def get_location(self):
+        """Récupère l'emplacement."""
+        return self.location
+
+    def add_host(self, user):
+        """Ajoute un hôte au lieu. Vérifie qu'il n'y a qu'un seul hôte."""
+        if self.host is None:
+            self.host = user
+        else:
+            print("Ce lieu a déjà un hôte.")
