@@ -66,9 +66,3 @@ class Place:
         """Récupère l'emplacement."""
         return self.location
 
-    def add_host(self, user):
-        """Ajoute un hôte au lieu. Vérifie qu'il n'y a qu'un seul hôte."""
-        if self.host is None:
-            self.host = user
-        else:
-            print("Ce lieu a déjà un hôte.")
