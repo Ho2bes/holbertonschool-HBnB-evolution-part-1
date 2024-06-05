@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import unittest
-from hbnb_place import Place
+from model_place import Place
 
 class TestPlace(unittest.TestCase):
     def setUp(self):
