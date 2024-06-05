@@ -5,49 +5,73 @@
 class Place:
     """class place with his methods"""
     def __init__(self, location, number_guests, number_rooms):
-        self.location = location
-        self.number_guests = number_guests
-        self.number_rooms = number_rooms
-        self.reviews = []
-        self.amenities = []
-        self.description = ""
-        self.availability = True
+        self._location = location
+        self._number_guests = number_guests
+        self._number_rooms = number_rooms
+        self._reviews = []
+        self._amenities = []
+        self._description = ""
+        self._availability = True
+
+    @property
+    def location(self):
+        return self._location
+
+    @location.setter
+    def location(self, value):
+        self._location = value
+
+    @property
+    def number_guests(self):
+        return self._number_guests
+
+    @number_guests.setter
+    def number_guests(self, value):
+        self._number_guests = value
+
+    @property
+    def number_rooms(self):
+        return self._number_rooms
+
+    @number_rooms.setter
+    def number_rooms(self, value):
+        self._number_rooms = value
+
+    @property
+    def reviews(self):
+        return self._reviews
+
+    @property
+    def amenities(self):
+        return self._amenities
+
+    @property
+    def description(self):
+        return self._description
+
+    @description.setter
+    def description(self, value):
+        self._description = value
+
+    @property
+    def availability(self):
+        return self._availability
+
+    @availability.setter
+    def availability(self, value):
+        self._availability = value
 
     def add_review(self, review):
-        self.reviews.append(review)
-
-    def calculate_total_price(self, nightly_rate):
-        return nightly_rate * self.number_guests  # Supposons que le prix soit calculé par nuit
-
-    def list_amenities(self):
-        return self.amenities
-
-    def check_availability(self):
-        return self.availability
-
-    def list_reviews(self):
-        return self.reviews
-
-    def set_number_guests(self, number):
-        self.number_guests = number
-
-    def add_description(self, description):
-        self.description = description
-
-    def set_number_rooms(self, number):
-        self.number_rooms = number
-
-    def set_location(self, location):
-        self.location = location
+        self._reviews.append(review)
 
     def add_amenity(self, amenity):
-        self.amenities.append(amenity)
+        self._amenities.append(amenity)
 
     def toggle_availability(self):
-        self.availability = not self.availability
+        self._availability = not self._availability
 
-    def get_description(self):
-        return self.description
+    def calculate_total_price(self, nightly_rate):
+        return nightly_rate * self._number_guests  # Supposons que le prix soit calculé par nuit
 
-    def get_location(self):
-        return self.location
+    def list_reviews(self):
+        return self._reviews
