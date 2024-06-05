@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"class and methods of place for HBnB"
+"model/place class and methods of place for HBnB"
 
+
+# model/place.py
 
 class Place:
     """Classe représentant un lieu."""
