@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Class User"""
+
 
 class User:
     def __init__(self, email, first_name, last_name, password):
