@@ -2,8 +2,6 @@
 "model/place class and methods of place for HBnB"
 
 
-# model/place.py
-
 class Place:
     """Classe représentant un lieu."""
     def __init__(self, location, number_guests, number_rooms):

@@ -2,8 +2,6 @@
 """ code for api class place"""
 
 
-# api/place_routes.py
-
 from flask import Flask, jsonify, request
 from model.place import Place
 from persistence.place_repository import PlaceRepository

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ persistence code for place class"""
-# persistence/place_repository.py
+
 
 class PlaceRepository:
     """Classe pour simuler les opérations de persistance pour les lieux."""
