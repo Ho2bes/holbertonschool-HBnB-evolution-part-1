@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Code de persistance pour la classe Place."""
 
