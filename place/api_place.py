@@ -2,27 +2,30 @@
 """API pour la gestion des lieux."""
 
 from flask import Flask, jsonify, request
+from flask_restx import Api, Resource, fields
 from model_place import Place
 from persistence_place import PlaceRepository
 from place_route import app
 
+
 app = Flask(__name__)
-place_repo = PlaceRepository()
+api = Api(app)
 
-@app.route('/places/<place_id>', methods=['GET'])
-def get_place(place_id):
-    """Récupère un lieu par son identifiant."""
-    place_data = place_repo.get_place(place_id)
-    if place_data:
-        return jsonify(place_data)
-    else:
-        return jsonify({'error': 'Lieu non trouvé'}), 404
+@api.route('/places')
+class Places(Resource):
+    def get(self):
+        # Logique pour récupérer tous les lieux
+        return {'message': 'Liste de tous les lieux'}
 
-@app.route('/', methods=['GET'])
-def get_new_place():
-    return "hello i'm not error 404"
+    def post(self):
+        # Logique pour créer un nouveau lieu
+        return {'message': 'Lieu créé avec succès'}, 201
 
-# D'autres routes pour les opérations CRUD peuvent être ajoutées ici
+@api.route('/places/<place_id>')
+class Place(Resource):
+    def get(self, place_id):
+        # Logique pour récupérer un lieu par son identifiant
+        return {'message': 'Détails du lieu avec l\'ID {}'.format(place_id)}
 
 if __name__ == "__main__":
     app.run(debug=True)
