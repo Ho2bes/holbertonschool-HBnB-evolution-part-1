@@ -5,7 +5,7 @@
 import unittest
 from flask import Flask, jsonify
 from unittest.mock import patch
-from api.place_routes import app
+from place_route import app
 
 class TestPlaceRoutes(unittest.TestCase):
     def setUp(self):
