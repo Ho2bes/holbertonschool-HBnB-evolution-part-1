@@ -14,4 +14,4 @@ class Review:
 
     def delete_review(self):
         # Code pour supprimer la revue de la base de données ou du stockage
-        pass
+        pass # i
