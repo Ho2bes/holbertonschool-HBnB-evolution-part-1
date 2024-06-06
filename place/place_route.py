@@ -12,8 +12,11 @@ def get_places():
 @app.route('/places/<place_id>', methods=['GET'])
 def get_place(place_id):
     """Route pour récupérer un lieu par son identifiant."""
-    # Code pour récupérer le lieu à partir de la base de données ou de la liste 'places'
-    return jsonify(place)
+    # Supposons que 'places' est une liste de dictionnaires représentant chaque lieu
+    for place in places:
+        if place['id'] == place_id:  # Supposons que chaque lieu a un champ 'id'
+            return jsonify(place)
+    return jsonify({'error': 'Place not found'}), 404
 
 @app.route('/places', methods=['POST'])
 def create_place():
