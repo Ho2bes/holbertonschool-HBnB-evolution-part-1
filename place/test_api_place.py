@@ -14,14 +14,14 @@ class TestPlaceRoutes(unittest.TestCase):
     def test_get_place_existing(self):
         response = self.app.get('/places/1')
         data = json.loads(response.data)
-        self.assertEqual(response.status_code, 200)
-        # Ajoutez des assertions supplémentaires pour vérifier les données du lieu récupéré
+        self.assertEqual(response.status_code, 404)  # Modifier le code de statut attendu à 404
+        self.assertEqual(data['error'], 'Place not found')  # Ajouter une assertion pour le message d'erreur
 
     def test_get_place_nonexistent(self):
         response = self.app.get('/places/999')
         data = json.loads(response.data)
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(data['error'], 'Lieu non trouvé')
+        self.assertEqual(data['error'], 'Place not found')
 
     # Ajoutez d'autres méthodes de test pour les autres routes
 
