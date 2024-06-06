@@ -4,37 +4,24 @@ import unittest
 from User_review import Review
 
 class test_user_review(unittest.TestCase):
-      def setUp(self):
-        # Initialisation pour chaque test
-        self.review = Review()
+    def setUp(self):
+        # Initialisation pour chaque test avec des valeurs par défaut
+        self.review = Review("Initial feedback", 3)
 
-        def test_add_review(self):
-              # Test d'ajout d'un avis
-              self.review.add_review("Great product")
-              self.assertEqual(self.review.reviews, ["Great product"])
+    def test_set_feedback(self):
+        # Test de modification de l'avis
+        self.review.set_feedback("Great product")
+        self.assertEqual(self.review.get_feedback(), "Great product")
 
-              def test_modify_review(self):
-                    # Test de modification d'un avis
-                    self.review.add_review("Great product")
-                    self.review.modify_review(0, "Awesome product")
-                    self.assertEqual(self.review.reviews, ["Awesome product"])
+    def test_set_rating(self):
+        # Test de modification de la note
+        self.review.set_rating(5)
+        self.assertEqual(self.review.get_rating(), 5)
 
-                    def test_delete_review(self):
-                         # Test de suppression d'un avis
-                         self.review.add_review("Great product")
-                         self.review.delete_review(0)
-                         self.assertEqual(self.review.reviews, [])
-
-                         def test_display_reviews(self):
-                              # Test d'affichage des avis
-                              self.review.add_review("Great product")
-                              self.review.add_review("Terrible service")
-                              self.review.add_review("Average experience")
-                              captured_output = io.StringIO()
-                              sys.stdout = captured_output
-                              self.review.display_reviews()
-                              sys.stdout = sys.__stdout__
-                              self.assertEqual(captured_output.getvalue(), "Great product\nTerrible service\nAverage experience\n")
+    def test_edit_feedback(self):
+        # Test de modification de l'avis avec méthode dédiée
+        self.review.edit_feedback("Awesome product")
+        self.assertEqual(self.review.get_feedback(), "Awesome product")
 
 if __name__ == '__main__':
     unittest.main()
