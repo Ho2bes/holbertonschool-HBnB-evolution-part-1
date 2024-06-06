@@ -12,8 +12,8 @@ class Review:
     def edit_rating(self, new_rating):
         self.rating = new_rating
 
-    def delete_review(self):
-        # Code pour supprimer la revue
+    def delete_review(self, persistence_manager):
+        persistence_manager.delete(self.review_id)
         self.review_id = None
         self.feedback = None
         self.rating = None
