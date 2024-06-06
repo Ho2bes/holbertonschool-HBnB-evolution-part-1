@@ -64,3 +64,15 @@ class Place:
     def get_location(self):
         """Récupère l'emplacement."""
         return self.location
+
+    def update_place_data(self, new_data):
+        """Met à jour les données du lieu avec de nouvelles données."""
+        for key, value in new_data.items():
+            setattr(self, key, value)
+
+    def delete_amenity(self, amenity_id):
+        """Supprime un équipement du lieu par son ID."""
+        for amenity in self.amenities:
+            if amenity.id == amenity_id:
+                self.amenities.remove(amenity)
+                break
