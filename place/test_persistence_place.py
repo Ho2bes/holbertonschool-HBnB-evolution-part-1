@@ -2,7 +2,7 @@
 
 
 import unittest
-from persistence.place_repository import PlaceRepository
+from persistence_place import PlaceRepository
 
 class TestPlaceRepository(unittest.TestCase):
     def setUp(self):
