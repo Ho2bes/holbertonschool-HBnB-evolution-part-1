@@ -18,6 +18,10 @@ def get_place(place_id):
     else:
         return jsonify({'error': 'Lieu non trouvé'}), 404
 
+@app.route('/', methods=['GET'])
+def get_new_place():
+    return "hello i'm not error 404"
+
 # D'autres routes pour les opérations CRUD peuvent être ajoutées ici
 
 if __name__ == "__main__":
