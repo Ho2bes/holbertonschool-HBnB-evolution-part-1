@@ -4,6 +4,7 @@
 from flask import Flask, jsonify, request
 from model_place import Place
 from persistence_place import PlaceRepository
+from place_route import app
 
 app = Flask(__name__)
 place_repo = PlaceRepository()

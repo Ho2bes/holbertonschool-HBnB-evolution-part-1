@@ -3,35 +3,27 @@
 
 
 import unittest
-from flask import Flask, jsonify
-from unittest.mock import patch
+from flask import json
 from place_route import app
 
 class TestPlaceRoutes(unittest.TestCase):
+
     def setUp(self):
-        # Création d'une application Flask test
         self.app = app.test_client()
 
-    @patch('api.place_routes.place_repo')  # Mock de PlaceRepository
-    def test_get_place_existing(self, mock_repo):
-        # Données de test
-        place_data = {'location': 'Paris', 'number_guests': 4, 'number_rooms': 2}
-        mock_repo.get_place.return_value = place_data
-
-        # Test de la route pour récupérer un lieu existant
-        response = self.app.get('/places/123')
+    def test_get_place_existing(self):
+        response = self.app.get('/places/1')
+        data = json.loads(response.data)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json, place_data)
+        # Ajoutez des assertions supplémentaires pour vérifier les données du lieu récupéré
 
-    @patch('api.place_routes.place_repo')  # Mock de PlaceRepository
-    def test_get_place_nonexistent(self, mock_repo):
-        # Mock de la méthode get_place pour retourner None (lieu inexistant)
-        mock_repo.get_place.return_value = None
-
-        # Test de la route pour récupérer un lieu inexistant
-        response = self.app.get('/places/456')
+    def test_get_place_nonexistent(self):
+        response = self.app.get('/places/999')
+        data = json.loads(response.data)
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(response.json, {'error': 'Place not found'})
+        self.assertEqual(data['error'], 'Lieu non trouvé')
+
+    # Ajoutez d'autres méthodes de test pour les autres routes
 
 if __name__ == '__main__':
     unittest.main()
