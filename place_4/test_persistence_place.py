@@ -47,6 +47,32 @@ class PlaceRepositoryTestCase(unittest.TestCase):
         all_places = self.data_manager.get_all_places()
         self.assertEqual(len(all_places), 1)
 
+    def test_save(self):
+        place = Place(**self.place_data)
+        self.data_manager.save(place)
+        self.assertEqual(self.repo.get(place.place_id).name, "Test Place")
+
+    def test_get(self):
+        place_id = self.data_manager.create_place(self.place_data)
+        place = self.data_manager.get(place_id)
+        self.assertEqual(place.name, "Test Place")
+
+    def test_update(self):
+        place_id = self.data_manager.create_place(self.place_data)
+        new_data = {"name": "Updated Place"}
+        self.assertTrue(self.data_manager.update(place_id, new_data))
+        self.assertEqual(self.repo.get(place_id).name, "Updated Place")
+
+    def test_delete(self):
+        place_id = self.data_manager.create_place(self.place_data)
+        self.assertTrue(self.data_manager.delete(place_id))
+        self.assertIsNone(self.repo.get(place_id))
+
+    def test_get_all(self):
+        self.data_manager.create_place(self.place_data)
+        all_places = self.data_manager.get_all()
+        self.assertEqual(len(all_places), 1)
+
 if __name__ == '__main__':
     unittest.main()
 
