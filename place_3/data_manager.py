@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-
 """Gestionnaire de données pour les lieux."""
+
 
 class PlaceDataManager:
     """Classe pour gérer les opérations sur les lieux."""

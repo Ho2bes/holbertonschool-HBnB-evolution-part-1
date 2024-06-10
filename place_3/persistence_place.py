@@ -1,6 +1,31 @@
 #!/usr/bin/python3
 """Code de persistance pour la classe Place."""
 
+
+from abc import ABC, abstractmethod
+from model_place import Place
+
+class DataManager(ABC):
+    @abstractmethod
+    def save(self, entity):
+        pass
+
+    @abstractmethod
+    def get(self, entity_id):
+        pass
+
+    @abstractmethod
+    def update(self, entity_id, new_data):
+        pass
+
+    @abstractmethod
+    def delete(self, entity_id):
+        pass
+
+    @abstractmethod
+    def get_all(self):
+        pass
+
 class PlaceRepository:
     """Classe pour gérer la persistance des lieux."""
     def __init__(self):
