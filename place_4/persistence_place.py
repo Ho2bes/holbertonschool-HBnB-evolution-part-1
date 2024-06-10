@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Gestionnaire de données pour les lieux."""
+"""persistence class with datamanager"""
 
 from abc import ABC, abstractmethod
 from model_place import Place
 
-class DataManager(ABC):
+class IPersistenceManager(ABC):
     @abstractmethod
     def save(self, entity):
         pass
@@ -25,7 +25,7 @@ class DataManager(ABC):
     def get_all(self):
         pass
 
-class PlaceRepository(DataManager):
+class PlaceRepository(IPersistenceManager):
     """Classe pour gérer la persistance des lieux."""
     def __init__(self):
         self.places = {}
