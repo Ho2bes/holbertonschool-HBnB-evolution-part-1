@@ -7,11 +7,12 @@ import uuid
 class User:
     """Classe représentant un utilisateur."""
 
-    def __init__(self, email, first_name, last_name):
+    def __init__(self, email, first_name, last_name, password):
         self.user_id = str(uuid.uuid4())
         self.email = email
         self.first_name = first_name
         self.last_name = last_name
+        self.password = password
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 

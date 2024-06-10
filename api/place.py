@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """API pour la gestion des lieux."""
 
-from flask import Blueprint, request
-from flask_restx import Api, Resource, fields, Namespace
+from flask import request
+from flask_restx import Namespace, Resource, fields
 from model.place import Place
 from persistence.data_manager import PlaceRepository
 

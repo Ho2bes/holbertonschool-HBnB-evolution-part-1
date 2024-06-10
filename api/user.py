@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """API pour la gestion des utilisateurs."""
 
-from flask import Blueprint, request
-from flask_restx import Api, Resource, fields, Namespace
+from flask import request
+from flask_restx import Namespace, Resource, fields
 from model.user import User
 from persistence.data_manager import UserRepository
 import uuid
@@ -18,7 +18,8 @@ user_repo = UserRepository()
 user_model = api.model('User', {
     'email': fields.String(required=True, description='Adresse e-mail de l\'utilisateur'),
     'first_name': fields.String(required=True, description='Prénom de l\'utilisateur'),
-    'last_name': fields.String(required=True, description='Nom de famille de l\'utilisateur')
+    'last_name': fields.String(required=True, description='Nom de famille de l\'utilisateur'),
+    'password': fields.String(required=True, description='Mot de passe de l\'utilisateur')
 })
 
 @api.route('/')
@@ -37,8 +38,8 @@ class Users(Resource):
         """Crée un nouvel utilisateur."""
         new_user_data = api.payload
         # Validation des données d'entrée
-        if not new_user_data.get('email') or not new_user_data.get('first_name') or not new_user_data.get('last_name'):
-            api.abort(400, 'Les champs email, first_name et last_name sont requis.')
+        if not new_user_data.get('email') or not new_user_data.get('first_name') or not new_user_data.get('last_name') or not new_user_data.get('password'):
+            api.abort(400, 'Les champs email, first_name, last_name et password sont requis.')
 
         if not user_repo.is_email_unique(new_user_data['email']):
             api.abort(409, 'L\'adresse e-mail existe déjà.')
@@ -81,8 +82,8 @@ class UserResource(Resource):
         """Met à jour un utilisateur existant."""
         new_user_data = api.payload
         # Validation des données d'entrée
-        if not new_user_data.get('email') or not new_user_data.get('first_name') or not new_user_data.get('last_name'):
-            api.abort(400, 'Les champs email, first_name et last_name sont requis.')
+        if not new_user_data.get('email') or not new_user_data.get('first_name') or not new_user_data.get('last_name') or not new_user_data.get('password'):
+            api.abort(400, 'Les champs email, first_name, last_name et password sont requis.')
 
         if not user_repo.is_email_unique(new_user_data['email'], user_id):
             api.abort(409, 'L\'adresse e-mail existe déjà.')
