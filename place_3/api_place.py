@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 """API pour la gestion des lieux."""
 
-from flask import Flask
+from flask import Flask, request
 from flask_restx import Api, Resource, fields
 from model_place import Place
-from persistence_place import PlaceRepository
-from data_manager import PlaceDataManager
+from persistence_place import PlaceRepository, PlaceDataManager
 
 app = Flask(__name__)
 api = Api(app)
@@ -43,7 +42,7 @@ class Places(Resource):
     @api.response(400, 'Requête invalide')
     def post(self):
         """Crée un nouveau lieu."""
-        new_place_data = api.payload
+        new_place_data = request.json
         place_id = place_data_manager.create_place(new_place_data)
         response_message = {'message': 'Lieu créé avec succès', 'place_id': place_id}
         return response_message, 201
@@ -66,7 +65,7 @@ class PlaceResource(Resource):
         """Supprime un lieu existant."""
         deleted = place_data_manager.delete_place(place_id)
         if deleted:
-            return {'message': 'Lieu supprimé avec succès'}, 204
+            return '', 204
         else:
             api.abort(404, "Lieu non trouvé")
 
@@ -76,10 +75,10 @@ class PlaceResource(Resource):
     @api.response(404, 'Lieu non trouvé')
     def put(self, place_id):
         """Met à jour un lieu existant."""
-        new_place_data = api.payload
+        new_place_data = request.json
         updated = place_data_manager.update_place(place_id, new_place_data)
         if updated:
-            return {'message': 'Lieu mis à jour avec succès'}, 204
+            return '', 204
         else:
             api.abort(404, "Lieu non trouvé")
 

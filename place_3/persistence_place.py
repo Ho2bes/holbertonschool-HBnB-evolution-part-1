@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Code de persistance pour la classe Place."""
+"""Gestionnaire de données pour les lieux."""
 
 from abc import ABC, abstractmethod
 from model_place import Place
@@ -31,12 +31,12 @@ class PlaceRepository(DataManager):
         self.places = {}
         self.next_id = 1
 
-    def save(self, entity):
+    def save(self, place):
         """Sauvegarde un lieu."""
-        if not hasattr(entity, 'place_id'):
-            entity.place_id = self.next_id
+        if not hasattr(place, 'place_id'):
+            place.place_id = self.next_id
             self.next_id += 1
-        self.places[entity.place_id] = entity
+        self.places[place.place_id] = place
 
     def get(self, place_id):
         """Récupère un lieu."""
@@ -67,3 +67,52 @@ class PlaceRepository(DataManager):
             del self.places[place_id]
             return True
         return False
+
+class PlaceDataManager:
+    """Classe pour gérer les opérations sur les lieux."""
+    def __init__(self, repository):
+        self.repository = repository
+
+    def save(self, entity):
+        """Sauvegarde un lieu."""
+        self.repository.save(entity)
+
+    def get(self, entity_id):
+        """Récupère un lieu par son identifiant."""
+        return self.repository.get(entity_id)
+
+    def update(self, entity_id, new_data):
+        """Met à jour un lieu existant."""
+        return self.repository.update(entity_id, new_data)
+
+    def delete(self, entity_id):
+        """Supprime un lieu existant."""
+        return self.repository.delete(entity_id)
+
+    def get_all(self):
+        """Récupère tous les lieux."""
+        return self.repository.get_all()
+
+    def get_all_places(self):
+        """Récupère tous les lieux."""
+        return self.get_all()
+
+    def get_place(self, place_id):
+        """Récupère un lieu par son identifiant."""
+        return self.get(place_id)
+
+    def create_place(self, place_data):
+        """Crée un nouveau lieu."""
+        place_id = len(self.repository.places) + 1
+        place_data['place_id'] = place_id
+        place = Place(**place_data)
+        self.save(place)
+        return place.place_id
+
+    def update_place(self, place_id, new_place_data):
+        """Met à jour un lieu existant."""
+        return self.update(place_id, new_place_data)
+
+    def delete_place(self, place_id):
+        """Supprime un lieu existant."""
+        return self.delete(place_id)
