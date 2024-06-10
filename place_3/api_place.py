@@ -49,7 +49,7 @@ class Places(Resource):
         return response_message, 201
 
 @api.route('/places/<int:place_id>')
-class Place(Resource):
+class PlaceResource(Resource):
     @api.marshal_with(place_model)
     @api.response(404, 'Lieu non trouvé')
     def get(self, place_id):

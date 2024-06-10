@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Code de persistance pour la classe Place."""
 
-
 from abc import ABC, abstractmethod
 from model_place import Place
 
@@ -26,43 +25,45 @@ class DataManager(ABC):
     def get_all(self):
         pass
 
-class PlaceRepository:
+class PlaceRepository(DataManager):
     """Classe pour gérer la persistance des lieux."""
     def __init__(self):
         self.places = {}
+        self.next_id = 1
 
-    def save_place(self, place_id, place_data):
+    def save(self, entity):
         """Sauvegarde un lieu."""
-        self.places[place_id] = place_data
+        if not hasattr(entity, 'place_id'):
+            entity.place_id = self.next_id
+            self.next_id += 1
+        self.places[entity.place_id] = entity
 
-    def get_place(self, place_id):
+    def get(self, place_id):
         """Récupère un lieu."""
         return self.places.get(place_id)
 
-    def get_all_places(self):
+    def get_all(self):
         """Récupère tous les lieux."""
         return list(self.places.values())
 
     def create_place(self, place_data):
         """Crée un nouveau lieu."""
-        place_id = len(self.places) + 1
-        self.places[place_id] = place_data
-        return place_id
+        place = Place(**place_data)
+        self.save(place)
+        return place.place_id
 
-    def update_place(self, place_id, new_place_data):
+    def update(self, place_id, new_place_data):
         """Met à jour un lieu existant."""
         if place_id in self.places:
-            self.places[place_id] = new_place_data
+            place = self.places[place_id]
+            place.update_place_data(new_place_data)
+            self.save(place)
             return True
-        else:
-            return False
+        return False
 
-    def delete_place(self, place_id):
+    def delete(self, place_id):
         """Supprime un lieu existant."""
         if place_id in self.places:
             del self.places[place_id]
             return True
-        else:
-            return False
-
-    # D'autres méthodes CRUD peuvent être ajoutées ici
+        return False
