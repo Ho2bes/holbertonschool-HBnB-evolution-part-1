@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-class DataManager(IPersistence_Manager):
+class DataManager(IPersistenceManager):
     def __init__(self):
         self.storage = {}  # Dictionnaire pour simuler le stockage en mémoire
 
