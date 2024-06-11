@@ -22,7 +22,7 @@ api.add_namespace(country_api, path='/countries')
 api.add_namespace(city_api, path='/cities')
 
 #modication for docker
-import os
+#import os
 
 # if __name__ == "__main__":
 #    port = int(os.environ.get("PORT", 5000))
@@ -30,4 +30,4 @@ import os
 
 #code without docker
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5001)
