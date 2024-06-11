@@ -21,12 +21,13 @@ api.add_namespace(amenity_api, path='/amenities')
 api.add_namespace(country_api, path='/countries')
 api.add_namespace(city_api, path='/cities')
 
-
+#modication for docker
 import os
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-    
+
+#code without docker
 #if __name__ == "__main__":
 #    app.run(debug=True)
