@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Point d'entrée principal pour l'application Flask."""
 
+import os
 from flask import Flask
 from flask_restx import Api
 from api.user import api as user_api
@@ -27,4 +28,5 @@ def index():
     return 'Bienvenue sur l\'API HBnB Evolution!'
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host="0.0.0.0", port=port)
