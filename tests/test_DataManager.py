@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import unittest
+from DataManager import DataManager
+from review import Review
 
 class TestDataManager(unittest.TestCase):
     def setUp(self):
