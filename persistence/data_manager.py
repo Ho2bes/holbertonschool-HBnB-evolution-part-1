@@ -32,13 +32,14 @@ class DataManager(ABC):
         pass
 
 class UserRepository(DataManager):
-    """Classe pour gérer la persistance et les opérations sur les utilisateurs."""
+    """Class to manage user persistence and operations."""
+
     def __init__(self):
         self.users = {}
         self.next_id = 1
 
     def save(self, entity):
-        """Sauvegarde un utilisateur."""
+        """Save a user."""
         if not hasattr(entity, 'user_id'):
             entity.user_id = str(uuid.uuid4())
             entity.created_at = datetime.now()
@@ -46,15 +47,15 @@ class UserRepository(DataManager):
         self.users[entity.user_id] = entity
 
     def get(self, entity_id):
-        """Récupère un utilisateur par son identifiant."""
+        """Get a user by ID."""
         return self.users.get(entity_id)
 
     def get_all(self):
-        """Récupère tous les utilisateurs."""
+        """Get all users."""
         return list(self.users.values())
 
     def update(self, entity_id, new_data):
-        """Met à jour un utilisateur existant."""
+        """Update an existing user."""
         if entity_id in self.users:
             user = self.users[entity_id]
             user.update_user_data(new_data)
@@ -63,36 +64,38 @@ class UserRepository(DataManager):
         return False
 
     def delete(self, entity_id):
-        """Supprime un utilisateur existant."""
+        """Delete an existing user."""
         if entity_id in self.users:
             del self.users[entity_id]
             return True
         return False
 
     def create_user(self, user_data):
-        """Crée un nouveau utilisateur."""
+        """Create a new user."""
+        if not self.is_email_unique(user_data['email']):
+            raise ValueError('Email address already exists.')
         user = User(**user_data)
         self.save(user)
         return user.user_id
 
     def update_user(self, user_id, new_user_data):
-        """Met à jour un utilisateur existant."""
+        """Update an existing user."""
         return self.update(user_id, new_user_data)
 
     def delete_user(self, user_id):
-        """Supprime un utilisateur existant."""
+        """Delete an existing user."""
         return self.delete(user_id)
 
     def get_all_users(self):
-        """Récupère tous les utilisateurs."""
+        """Get all users."""
         return self.get_all()
 
     def get_user(self, user_id):
-        """Récupère un utilisateur par son identifiant."""
+        """Get a user by ID."""
         return self.get(user_id)
 
     def is_email_unique(self, email, user_id=None):
-        """Vérifie si l'e-mail est unique."""
+        """Check if email is unique."""
         for user in self.users.values():
             if user.email == email and user.user_id != user_id:
                 return False

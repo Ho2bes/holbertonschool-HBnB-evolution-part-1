@@ -24,7 +24,7 @@ class TestUserModel(unittest.TestCase):
         self.user_repo.create_user(self.user_data)
         with self.assertRaises(ValueError) as context:
             self.user_repo.create_user(self.user_data)  # Should raise an exception for duplicate email
-        self.assertTrue('L\'adresse e-mail existe déjà.' in str(context.exception))
+        self.assertTrue('Email address already exists.' in str(context.exception))
 
     def test_update_user(self):
         user_id = self.user_repo.create_user(self.user_data)
