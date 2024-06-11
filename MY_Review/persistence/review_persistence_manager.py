@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from .persistence_manager import IPersistenceManager
+from persistence_manager import IPersistenceManager
 
 class ReviewPersistenceManager(IPersistenceManager):
     def __init__(self):
