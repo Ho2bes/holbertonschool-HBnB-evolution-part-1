@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
-from flask_restx import Api, Resource, fields
-from flask import Blueprint, request
+from flask_restx import Namespace, Resource, fields
+from flask import request
 from persistence.data_manager import DataManager
 
 data_manager = DataManager()
 
-api_bp = Blueprint('api_review', __name__)
-api = Api(api_bp)
+api = Namespace('reviews', description='Opérations liées aux avis')
 
 # Modèle de données pour la création d'un avis
 review_model = api.model('Review', {
@@ -17,7 +16,7 @@ review_model = api.model('Review', {
     'comment': fields.String(description='Commentaire')
 })
 
-@api.route('/reviews')
+@api.route('/')
 class Reviews(Resource):
     @api.marshal_list_with(review_model)
     def get(self):
@@ -35,7 +34,7 @@ class Reviews(Resource):
         response_message = {'message': 'Avis créé avec succès', 'review_id': review_id}
         return response_message, 201
 
-@api.route('/reviews/<int:review_id>')
+@api.route('/<int:review_id>')
 class ReviewResource(Resource):
     @api.marshal_with(review_model)
     @api.response(404, 'Avis non trouvé')

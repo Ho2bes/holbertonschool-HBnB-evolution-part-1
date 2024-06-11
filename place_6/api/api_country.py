@@ -1,20 +1,19 @@
 #!/usr/bin/python3
 
-from flask_restx import Api, Resource, fields
-from flask import Blueprint, request
+from flask_restx import Namespace, Resource, fields
+from flask import request
 from persistence.data_manager import DataManager
 
 data_manager = DataManager()
 
-api_bp = Blueprint('api_country', __name__)
-api = Api(api_bp)
+api = Namespace('countries', description='Opérations liées aux pays')
 
 # Modèle de données pour la création d'un pays
 country_model = api.model('Country', {
     'name': fields.String(required=True, description='Nom du pays')
 })
 
-@api.route('/countries')
+@api.route('/')
 class Countries(Resource):
     @api.marshal_list_with(country_model)
     def get(self):
@@ -32,7 +31,7 @@ class Countries(Resource):
         response_message = {'message': 'Pays créé avec succès', 'country_id': country_id}
         return response_message, 201
 
-@api.route('/countries/<int:country_id>')
+@api.route('/<int:country_id>')
 class CountryResource(Resource):
     @api.marshal_with(country_model)
     @api.response(404, 'Pays non trouvé')

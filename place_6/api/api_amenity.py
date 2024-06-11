@@ -1,21 +1,20 @@
 #!/usr/bin/python3
 
 
-from flask_restx import Api, Resource, fields
-from flask import Blueprint, request
+from flask_restx import Namespace, Resource, fields
+from flask import request
 from persistence.data_manager import DataManager
 
 data_manager = DataManager()
 
-api_bp = Blueprint('api_amenity', __name__)
-api = Api(api_bp)
+api = Namespace('amenities', description='Opérations liées aux équipements')
 
 # Modèle de données pour la création d'un équipement
 amenity_model = api.model('Amenity', {
     'name': fields.String(required=True, description='Nom de l\'équipement')
 })
 
-@api.route('/amenities')
+@api.route('/')
 class Amenities(Resource):
     @api.marshal_list_with(amenity_model)
     def get(self):
@@ -33,7 +32,7 @@ class Amenities(Resource):
         response_message = {'message': 'Équipement créé avec succès', 'amenity_id': amenity_id}
         return response_message, 201
 
-@api.route('/amenities/<int:amenity_id>')
+@api.route('/<int:amenity_id>')
 class AmenityResource(Resource):
     @api.marshal_with(amenity_model)
     @api.response(404, 'Équipement non trouvé')

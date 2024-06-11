@@ -5,8 +5,8 @@ from flask import Blueprint
 from flask_restx import Api
 
 # Créer un blueprint pour l'API
-api_bp = Blueprint('api', __name__)
-api = Api(api_bp)
+api_bp = Blueprint('api', __name__, url_prefix='/api')
+api = Api(api_bp, doc='/docs')
 
 # Importer les modules pour enregistrer les routes
 from .api_amenity import api as amenity_api

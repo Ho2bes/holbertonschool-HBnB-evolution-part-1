@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
-from flask_restx import Api, Resource, fields
-from flask import Blueprint, request
+from flask_restx import Namespace, Resource, fields
+from flask import request
 from persistence.data_manager import DataManager
 
 data_manager = DataManager()
 
-api_bp = Blueprint('api_city', __name__)
-api = Api(api_bp)
+api = Namespace('cities', description='Opérations liées aux villes')
 
 # Modèle de données pour la création d'une ville
 city_model = api.model('City', {
@@ -15,7 +14,7 @@ city_model = api.model('City', {
     'country_id': fields.Integer(description='ID du pays', required=True)
 })
 
-@api.route('/cities')
+@api.route('/')
 class Cities(Resource):
     @api.marshal_list_with(city_model)
     def get(self):
@@ -33,7 +32,7 @@ class Cities(Resource):
         response_message = {'message': 'Ville créée avec succès', 'city_id': city_id}
         return response_message, 201
 
-@api.route('/cities/<int:city_id>')
+@api.route('/<int:city_id>')
 class CityResource(Resource):
     @api.marshal_with(city_model)
     @api.response(404, 'Ville non trouvée')

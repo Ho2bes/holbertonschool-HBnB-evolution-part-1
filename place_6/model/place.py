@@ -2,9 +2,7 @@
 """Modèle pour la représentation des lieux."""
 
 class Place:
-    """Classe représentant un lieu."""
     def __init__(self, name, description, address, city_id, latitude, longitude, host_id, number_of_rooms, number_of_bathrooms, price_per_night, max_guests, amenity_ids):
-        self.place_id = None
         self.name = name
         self.description = description
         self.address = address
@@ -20,85 +18,16 @@ class Place:
         self.reviews = []
 
     def add_review(self, review):
-        """Ajoute un commentaire."""
         self.reviews.append(review)
 
-    def calculate_total_price(self, number_of_nights):
-        """Calcule le prix total pour un nombre de nuits."""
-        return self.price_per_night * number_of_nights
+    def calculate_total_price(self):
+        return self.price_per_night * self.max_guests
 
     def list_amenities(self):
-        """Liste les équipements."""
         return self.amenity_ids
 
-    def check_availability(self, start_date, end_date):
-        """Vérifie la disponibilité."""
-        # Logique pour vérifier la disponibilité entre start_date et end_date
+    def check_availability(self):
         pass
 
     def list_reviews(self):
-        """Liste les commentaires."""
-        return self.reviews
-
-    def set_number_of_guests(self, number):
-        """Définit le nombre d'invités."""
-        self.max_guests = number
-
-    def add_description(self, description):
-        """Ajoute une description."""
-        self.description = description
-
-    def set_number_of_rooms(self, number):
-        """Définit le nombre de chambres."""
-        self.number_of_rooms = number
-
-    def set_location(self, latitude, longitude):
-        """Définit l'emplacement."""
-        self.latitude = latitude
-        self.longitude = longitude
-
-    def add_amenity(self, amenity_id):
-        """Ajoute un équipement."""
-        self.amenity_ids.append(amenity_id)
-
-    def toggle_availability(self):
-        """Bascule la disponibilité."""
-        # Logique pour basculer la disponibilité
-        pass
-
-    def get_description(self):
-        """Récupère la description."""
-        return self.description
-
-    def get_location(self):
-        """Récupère l'emplacement."""
-        return self.latitude, self.longitude
-
-    def update_place_data(self, new_data):
-        """Met à jour les données du lieu avec de nouvelles données."""
-        for key, value in new_data.items():
-            setattr(self, key, value)
-
-    def delete_amenity(self, amenity_id):
-        """Supprime un équipement du lieu par son ID."""
-        if amenity_id in self.amenity_ids:
-            self.amenity_ids.remove(amenity_id)
-
-    def to_dict(self):
-        """Retourne les données du lieu sous forme de dictionnaire."""
-        return {
-            'place_id': self.place_id,
-            'name': self.name,
-            'description': self.description,
-            'address': self.address,
-            'city_id': self.city_id,
-            'latitude': self.latitude,
-            'longitude': self.longitude,
-            'host_id': self.host_id,
-            'number_of_rooms': self.number_of_rooms,
-            'number_of_bathrooms': self.number_of_bathrooms,
-            'price_per_night': self.price_per_night,
-            'max_guests': self.max_guests,
-            'amenity_ids': self.amenity_ids,
-            'reviews': self.reviews
-        }
+        return self.re
