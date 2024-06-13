@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Model for representing reviews."""
+# Model for representing reviews
 
-import uuid
 from datetime import datetime
+import uuid
 
 class Review:
     """Class representing a review."""

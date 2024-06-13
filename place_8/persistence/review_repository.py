@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # Persistence for reviews
 
-import uuid
 from datetime import datetime
 from model.review import Review
 from persistence.ipersistence_manager import IPersistenceManager
@@ -13,8 +12,6 @@ class ReviewRepository(IPersistenceManager):
 
     def save(self, review):
         """Saves a review."""
-        if not hasattr(review, 'review_id'):
-            review.review_id = str(uuid.uuid4())
         review.created_at = datetime.now()
         review.updated_at = datetime.now()
         self.reviews[review.review_id] = review

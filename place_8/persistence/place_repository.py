@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # Persistence for places
 
-import uuid
 from datetime import datetime
 from model.place import Place
 from persistence.ipersistence_manager import IPersistenceManager
@@ -13,8 +12,6 @@ class PlaceRepository(IPersistenceManager):
 
     def save(self, place):
         """Saves a place."""
-        if not hasattr(place, 'place_id'):
-            place.place_id = str(uuid.uuid4())
         place.created_at = datetime.now()
         place.updated_at = datetime.now()
         self.places[place.place_id] = place

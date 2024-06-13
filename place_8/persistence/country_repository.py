@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # Persistence for countries
 
+from datetime import datetime
 from model.country import Country
 from persistence.ipersistence_manager import IPersistenceManager
 
@@ -11,8 +12,8 @@ class CountryRepository(IPersistenceManager):
 
     def save(self, country):
         """Saves a country."""
-        if not hasattr(country, 'country_id'):
-            country.country_id = len(self.countries) + 1
+        country.created_at = datetime.now()
+        country.updated_at = datetime.now()
         self.countries[country.country_id] = country
 
     def get(self, country_id):
@@ -29,6 +30,7 @@ class CountryRepository(IPersistenceManager):
             country = self.countries[country_id]
             for key, value in new_country_data.items():
                 setattr(country, key, value)
+            country.updated_at = datetime.now()
             self.save(country)
             return True
         return False

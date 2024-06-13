@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Model for representing cities."""
+# Model for representing cities
 
-import uuid
 from datetime import datetime
+import uuid
 
 class City:
     """Class representing a city."""

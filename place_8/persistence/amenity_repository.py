@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # Persistence for amenities
 
-import uuid
 from datetime import datetime
 from model.amenity import Amenity
 from persistence.ipersistence_manager import IPersistenceManager
@@ -13,8 +12,6 @@ class AmenityRepository(IPersistenceManager):
 
     def save(self, amenity):
         """Saves an amenity."""
-        if not hasattr(amenity, 'amenity_id'):
-            amenity.amenity_id = str(uuid.uuid4())
         amenity.created_at = datetime.now()
         amenity.updated_at = datetime.now()
         self.amenities[amenity.amenity_id] = amenity

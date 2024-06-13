@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Model for representing amenities."""
+# Model for representing amenities
 
-import uuid
 from datetime import datetime
+import uuid
 
 class Amenity:
     """Class representing an amenity."""

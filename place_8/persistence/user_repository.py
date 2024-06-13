@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # Persistence for users
 
-import uuid
 from datetime import datetime
 from model.user import User
 from persistence.ipersistence_manager import IPersistenceManager
@@ -13,8 +12,6 @@ class UserRepository(IPersistenceManager):
 
     def save(self, user):
         """Saves a user."""
-        if not hasattr(user, 'user_id'):
-            user.user_id = str(uuid.uuid4())
         user.created_at = datetime.now()
         user.updated_at = datetime.now()
         self.users[user.user_id] = user

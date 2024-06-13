@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Model for representing places."""
+# Model for representing places
 
-import uuid
 from datetime import datetime
+import uuid
 
 class Place:
     """Class representing a place."""
@@ -24,72 +24,6 @@ class Place:
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
-    def add_review(self, review):
-        """Adds a review."""
-        self.reviews.append(review)
-
-    def calculate_total_price(self, number_of_nights):
-        """Calculates the total price for a number of nights."""
-        return self.price_per_night * number_of_nights
-
-    def list_amenities(self):
-        """Lists the amenities."""
-        return self.amenity_ids
-
-    def check_availability(self, start_date, end_date):
-        """Checks availability."""
-        # Logic to check availability between start_date and end_date
-        pass
-
-    def list_reviews(self):
-        """Lists the reviews."""
-        return self.reviews
-
-    def set_number_of_guests(self, number):
-        """Sets the number of guests."""
-        self.max_guests = number
-
-    def add_description(self, description):
-        """Adds a description."""
-        self.description = description
-
-    def set_number_of_rooms(self, number):
-        """Sets the number of rooms."""
-        self.number_of_rooms = number
-
-    def set_location(self, latitude, longitude):
-        """Sets the location."""
-        self.latitude = latitude
-        self.longitude = longitude
-
-    def add_amenity(self, amenity_id):
-        """Adds an amenity."""
-        self.amenity_ids.append(amenity_id)
-
-    def toggle_availability(self):
-        """Toggles availability."""
-        # Logic to toggle availability
-        pass
-
-    def get_description(self):
-        """Gets the description."""
-        return self.description
-
-    def get_location(self):
-        """Gets the location."""
-        return self.latitude, self.longitude
-
-    def update_place_data(self, new_data):
-        """Updates place data with new data."""
-        for key, value in new_data.items():
-            setattr(self, key, value)
-        self.updated_at = datetime.now()
-
-    def delete_amenity(self, amenity_id):
-        """Deletes an amenity from the place by its ID."""
-        if amenity_id in self.amenity_ids:
-            self.amenity_ids.remove(amenity_id)
-
     def to_dict(self):
         """Returns the place data as a dictionary."""
         return {
@@ -110,3 +44,9 @@ class Place:
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
+
+    def update_place_data(self, new_data):
+        """Updates place data with new values."""
+        for key, value in new_data.items():
+            setattr(self, key, value)
+        self.updated_at = datetime.now()

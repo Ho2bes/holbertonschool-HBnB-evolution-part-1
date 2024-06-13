@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # Persistence for cities
 
-import uuid
 from datetime import datetime
 from model.city import City
 from persistence.ipersistence_manager import IPersistenceManager
@@ -13,8 +12,6 @@ class CityRepository(IPersistenceManager):
 
     def save(self, city):
         """Saves a city."""
-        if not hasattr(city, 'city_id'):
-            city.city_id = str(uuid.uuid4())
         city.created_at = datetime.now()
         city.updated_at = datetime.now()
         self.cities[city.city_id] = city
