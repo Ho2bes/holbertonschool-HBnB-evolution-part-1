@@ -1,16 +1,13 @@
-# test2/test_city_api.py
-
 import unittest
 import sys
 import os
+from flask import Flask
+from flask_restx import Api
+from api.city_api import api as city_api
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from flask import Flask
-from flask_restx import Api
-from api.city_api import api as city_api
-from data_manager import DataManager
 
 class TestCityAPI(unittest.TestCase):
 
@@ -33,6 +30,7 @@ class TestCityAPI(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     # Ajoutez des tests pour d'autres méthodes de l'API City
+
 
 if __name__ == '__main__':
     unittest.main()

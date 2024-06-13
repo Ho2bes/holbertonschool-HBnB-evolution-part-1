@@ -1,5 +1,3 @@
-# test2/test_amenity.py
-
 import unittest
 import sys
 import os

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Data manager for handling CRUD operations across different entity types
+"""Data manager for handling CRUD operations across different entity types"""
 
 from persistence.place_repository import PlaceRepository
 from persistence.user_repository import UserRepository

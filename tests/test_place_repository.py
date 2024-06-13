@@ -1,14 +1,13 @@
-# test2/test_place_repository.py
-
 import unittest
 import sys
 import os
+from model.place import Place
+from persistence.place_repository import PlaceRepository
+
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.place import Place
-from persistence.place_repository import PlaceRepository
 
 class TestPlaceRepository(unittest.TestCase):
 
@@ -91,6 +90,7 @@ class TestPlaceRepository(unittest.TestCase):
         self.repo.save(place)
         self.repo.delete(place.place_id)
         self.assertIsNone(self.repo.get(place.place_id))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,16 +1,13 @@
-# test2/test_user_api.py
-
 import unittest
 import sys
 import os
+from flask import Flask
+from flask_restx import Api
+from api.user_api import api as user_api
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from flask import Flask
-from flask_restx import Api
-from api.user_api import api as user_api
-from data_manager import DataManager
 
 class TestUserAPI(unittest.TestCase):
 
@@ -34,6 +31,7 @@ class TestUserAPI(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     # Ajoutez des tests pour d'autres méthodes de l'API User
+
 
 if __name__ == '__main__':
     unittest.main()

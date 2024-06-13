@@ -1,16 +1,13 @@
-# test2/test_review_api.py
-
 import unittest
 import sys
 import os
+from flask import Flask
+from flask_restx import Api
+from api.review_api import api as review_api
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from flask import Flask
-from flask_restx import Api
-from api.review_api import api as review_api
-from data_manager import DataManager
 
 class TestReviewAPI(unittest.TestCase):
 
@@ -35,6 +32,7 @@ class TestReviewAPI(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     # Ajoutez des tests pour d'autres méthodes de l'API Review
+
 
 if __name__ == '__main__':
     unittest.main()

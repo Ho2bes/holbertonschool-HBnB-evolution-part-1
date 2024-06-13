@@ -1,13 +1,11 @@
-# test2/test_place.py
-
 import unittest
 import sys
 import os
+from model.place import Place
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.place import Place
 
 class TestPlace(unittest.TestCase):
 
@@ -49,6 +47,7 @@ class TestPlace(unittest.TestCase):
         place_dict = place.to_dict()
         self.assertEqual(place_dict['name'], 'Test Place')
         self.assertEqual(place_dict['place_id'], place.place_id)
+
 
 if __name__ == '__main__':
     unittest.main()

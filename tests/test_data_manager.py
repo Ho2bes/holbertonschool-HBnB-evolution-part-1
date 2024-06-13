@@ -1,17 +1,10 @@
-# test2/test_data_manager.py
-
 import unittest
 import sys
 import os
+from data_manager import DataManager
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from data_manager import DataManager
-from model.place import Place
-from model.user import User
-from model.review import Review
-from model.amenity import Amenity
-from model.country import Country
-from model.city import City
 
 class TestDataManager(unittest.TestCase):
 
@@ -215,6 +208,7 @@ class TestDataManager(unittest.TestCase):
         self.data_manager.delete_city(city_id)
         city = self.data_manager.get_city(city_id)
         self.assertIsNone(city)
+
 
 if __name__ == '__main__':
     unittest.main()

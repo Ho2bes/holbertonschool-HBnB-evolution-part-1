@@ -1,16 +1,13 @@
-# test2/test_country_api.py
-
 import unittest
 import sys
 import os
+from flask import Flask
+from flask_restx import Api
+from api.country_api import api as country_api
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from flask import Flask
-from flask_restx import Api
-from api.country_api import api as country_api
-from data_manager import DataManager
 
 class TestCountryAPI(unittest.TestCase):
 
@@ -32,6 +29,7 @@ class TestCountryAPI(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     # Ajoutez des tests pour d'autres méthodes de l'API Country
+
 
 if __name__ == '__main__':
     unittest.main()

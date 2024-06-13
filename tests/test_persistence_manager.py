@@ -1,14 +1,12 @@
-# test2/test_persistence_manager.py
-
 import unittest
 import sys
 import os
+from datetime import datetime
+from persistence.ipersistence_manager import IPersistenceManager
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from datetime import datetime
-from persistence.ipersistence_manager import IPersistenceManager
 
 class TestEntity:
     """A simple entity class for testing."""
@@ -22,6 +20,7 @@ class TestEntity:
         for key, value in new_data.items():
             setattr(self, key, value)
         self.updated_at = datetime.now()
+
 
 class ConcretePersistenceManager(IPersistenceManager):
     """A concrete implementation of IPersistenceManager for testing."""
@@ -52,6 +51,7 @@ class ConcretePersistenceManager(IPersistenceManager):
 
     def get_all(self):
         return list(self.entities.values())
+
 
 class TestIPersistenceManager(unittest.TestCase):
 
@@ -90,6 +90,7 @@ class TestIPersistenceManager(unittest.TestCase):
         self.persistence_manager.save(entity2)
         all_entities = self.persistence_manager.get_all()
         self.assertEqual(len(all_entities), 2)
+
 
 if __name__ == '__main__':
     unittest.main()

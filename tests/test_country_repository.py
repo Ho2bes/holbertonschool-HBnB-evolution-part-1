@@ -1,14 +1,12 @@
-# test2/test_country_repository.py
-
 import unittest
 import sys
 import os
+from model.country import Country
+from persistence.country_repository import CountryRepository
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.country import Country
-from persistence.country_repository import CountryRepository
 
 class TestCountryRepository(unittest.TestCase):
 
@@ -39,6 +37,7 @@ class TestCountryRepository(unittest.TestCase):
         self.repo.save(country)
         self.repo.delete(country.country_id)
         self.assertIsNone(self.repo.get(country.country_id))
+
 
 if __name__ == '__main__':
     unittest.main()

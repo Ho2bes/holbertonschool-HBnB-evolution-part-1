@@ -1,13 +1,11 @@
-# test2/test_country.py
-
 import unittest
 import sys
 import os
+from model.country import Country
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.country import Country
 
 class TestCountry(unittest.TestCase):
 
@@ -23,6 +21,7 @@ class TestCountry(unittest.TestCase):
         country_dict = country.to_dict()
         self.assertEqual(country_dict['name'], 'USA')
         self.assertEqual(country_dict['country_id'], country.country_id)
+
 
 if __name__ == '__main__':
     unittest.main()
