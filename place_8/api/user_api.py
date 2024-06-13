@@ -11,26 +11,23 @@ data_manager = DataManager()
 
 # Data model for creating a user
 user_model = api.model('User', {
+    'user_id': fields.String(description='User ID'),
     'username': fields.String(required=True, description='Username'),
     'email': fields.String(required=True, description='Email'),
-    'password': fields.String(required=True, description='Password')
-})
-
-# Extended model to include created_at and updated_at
-user_model_extended = api.inherit('UserExtended', user_model, {
+    'password': fields.String(required=True, description='Password'),
     'created_at': fields.DateTime(description='Creation date'),
     'updated_at': fields.DateTime(description='Last update date')
 })
 
 @api.route('/')
 class Users(Resource):
-    @api.marshal_list_with(user_model_extended)
+    @api.marshal_list_with(user_model)
     def get(self):
         """Retrieve all users."""
         all_users = data_manager.get_all_users()
         return all_users
 
-    @api.expect(user_model)
+    @api.expect(user_model, validate=True)
     @api.response(201, 'User successfully created')
     @api.response(400, 'Invalid request')
     def post(self):
@@ -42,7 +39,7 @@ class Users(Resource):
 
 @api.route('/<string:user_id>')
 class UserResource(Resource):
-    @api.marshal_with(user_model_extended)
+    @api.marshal_with(user_model)
     @api.response(404, 'User not found')
     def get(self, user_id):
         """Retrieve a user by its ID."""
@@ -52,7 +49,7 @@ class UserResource(Resource):
         else:
             api.abort(404, "User not found")
 
-    @api.expect(user_model)
+    @api.expect(user_model, validate=True)
     @api.response(204, 'User successfully updated')
     @api.response(400, 'Invalid request')
     @api.response(404, 'User not found')

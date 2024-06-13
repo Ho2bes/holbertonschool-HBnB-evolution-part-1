@@ -11,26 +11,22 @@ data_manager = DataManager()
 
 # Data model for creating a city
 city_model = api.model('City', {
-    'name': fields.String(required=True, description='City name'),
-    'country_id': fields.String(required=True, description='Country ID')
-})
-
-# Extended model to include created_at and updated_at
-city_model_extended = api.inherit('CityExtended', city_model, {
     'city_id': fields.String(description='City ID'),
+    'name': fields.String(required=True, description='City name'),
+    'country_id': fields.String(required=True, description='Country ID'),
     'created_at': fields.DateTime(description='Creation date'),
     'updated_at': fields.DateTime(description='Last update date')
 })
 
 @api.route('/')
 class Cities(Resource):
-    @api.marshal_list_with(city_model_extended)
+    @api.marshal_list_with(city_model)
     def get(self):
         """Retrieve all cities."""
         all_cities = data_manager.get_all_cities()
         return all_cities
 
-    @api.expect(city_model)
+    @api.expect(city_model, validate=True)
     @api.response(201, 'City successfully created')
     @api.response(400, 'Invalid request')
     def post(self):
@@ -42,7 +38,7 @@ class Cities(Resource):
 
 @api.route('/<string:city_id>')
 class CityResource(Resource):
-    @api.marshal_with(city_model_extended)
+    @api.marshal_with(city_model)
     @api.response(404, 'City not found')
     def get(self, city_id):
         """Retrieve a city by its ID."""
@@ -52,7 +48,7 @@ class CityResource(Resource):
         else:
             api.abort(404, "City not found")
 
-    @api.expect(city_model)
+    @api.expect(city_model, validate=True)
     @api.response(204, 'City successfully updated')
     @api.response(400, 'Invalid request')
     @api.response(404, 'City not found')

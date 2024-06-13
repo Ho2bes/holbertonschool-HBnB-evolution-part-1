@@ -11,24 +11,21 @@ data_manager = DataManager()
 
 # Data model for creating an amenity
 amenity_model = api.model('Amenity', {
-    'name': fields.String(required=True, description='Amenity name')
-})
-
-# Extended model to include created_at and updated_at
-amenity_model_extended = api.inherit('AmenityExtended', amenity_model, {
+    'amenity_id': fields.String(description='Amenity ID'),
+    'name': fields.String(required=True, description='Amenity name'),
     'created_at': fields.DateTime(description='Creation date'),
     'updated_at': fields.DateTime(description='Last update date')
 })
 
 @api.route('/')
 class Amenities(Resource):
-    @api.marshal_list_with(amenity_model_extended)
+    @api.marshal_list_with(amenity_model)
     def get(self):
         """Retrieve all amenities."""
         all_amenities = data_manager.get_all_amenities()
         return all_amenities
 
-    @api.expect(amenity_model)
+    @api.expect(amenity_model, validate=True)
     @api.response(201, 'Amenity successfully created')
     @api.response(400, 'Invalid request')
     def post(self):
@@ -40,7 +37,7 @@ class Amenities(Resource):
 
 @api.route('/<string:amenity_id>')
 class AmenityResource(Resource):
-    @api.marshal_with(amenity_model_extended)
+    @api.marshal_with(amenity_model)
     @api.response(404, 'Amenity not found')
     def get(self, amenity_id):
         """Retrieve an amenity by its ID."""
@@ -50,7 +47,7 @@ class AmenityResource(Resource):
         else:
             api.abort(404, "Amenity not found")
 
-    @api.expect(amenity_model)
+    @api.expect(amenity_model, validate=True)
     @api.response(204, 'Amenity successfully updated')
     @api.response(400, 'Invalid request')
     @api.response(404, 'Amenity not found')

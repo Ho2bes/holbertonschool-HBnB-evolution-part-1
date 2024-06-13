@@ -11,27 +11,24 @@ data_manager = DataManager()
 
 # Data model for creating a review
 review_model = api.model('Review', {
+    'review_id': fields.String(description='Review ID'),
     'user_id': fields.String(required=True, description='User ID'),
     'place_id': fields.String(required=True, description='Place ID'),
     'rating': fields.Integer(required=True, description='Rating'),
-    'comment': fields.String(description='Comment')
-})
-
-# Extended model to include created_at and updated_at
-review_model_extended = api.inherit('ReviewExtended', review_model, {
+    'comment': fields.String(description='Comment'),
     'created_at': fields.DateTime(description='Creation date'),
     'updated_at': fields.DateTime(description='Last update date')
 })
 
 @api.route('/')
 class Reviews(Resource):
-    @api.marshal_list_with(review_model_extended)
+    @api.marshal_list_with(review_model)
     def get(self):
         """Retrieve all reviews."""
         all_reviews = data_manager.get_all_reviews()
         return all_reviews
 
-    @api.expect(review_model)
+    @api.expect(review_model, validate=True)
     @api.response(201, 'Review successfully created')
     @api.response(400, 'Invalid request')
     def post(self):
@@ -43,7 +40,7 @@ class Reviews(Resource):
 
 @api.route('/<string:review_id>')
 class ReviewResource(Resource):
-    @api.marshal_with(review_model_extended)
+    @api.marshal_with(review_model)
     @api.response(404, 'Review not found')
     def get(self, review_id):
         """Retrieve a review by its ID."""
@@ -53,7 +50,7 @@ class ReviewResource(Resource):
         else:
             api.abort(404, "Review not found")
 
-    @api.expect(review_model)
+    @api.expect(review_model, validate=True)
     @api.response(204, 'Review successfully updated')
     @api.response(400, 'Invalid request')
     @api.response(404, 'Review not found')

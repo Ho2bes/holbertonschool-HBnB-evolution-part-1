@@ -11,6 +11,7 @@ data_manager = DataManager()
 
 # Data model for creating a place
 place_model = api.model('Place', {
+    'place_id': fields.String(description='Place ID'),
     'name': fields.String(required=True, description='Place name'),
     'description': fields.String(description='Place description'),
     'address': fields.String(description='Place address'),
@@ -22,24 +23,20 @@ place_model = api.model('Place', {
     'number_of_bathrooms': fields.Integer(description='Number of bathrooms'),
     'price_per_night': fields.Float(description='Price per night'),
     'max_guests': fields.Integer(description='Maximum number of guests'),
-    'amenity_ids': fields.List(fields.String, description='List of amenity IDs')
-})
-
-# Extended model to include created_at and updated_at
-place_model_extended = api.inherit('PlaceExtended', place_model, {
+    'amenity_ids': fields.List(fields.String, description='List of amenity IDs'),
     'created_at': fields.DateTime(description='Creation date'),
     'updated_at': fields.DateTime(description='Last update date')
 })
 
 @api.route('/')
 class Places(Resource):
-    @api.marshal_list_with(place_model_extended)
+    @api.marshal_list_with(place_model)
     def get(self):
         """Retrieve all places."""
         all_places = data_manager.get_all_places()
         return all_places
 
-    @api.expect(place_model)
+    @api.expect(place_model, validate=True)
     @api.response(201, 'Place successfully created')
     @api.response(400, 'Invalid request')
     def post(self):
@@ -51,7 +48,7 @@ class Places(Resource):
 
 @api.route('/<string:place_id>')
 class PlaceResource(Resource):
-    @api.marshal_with(place_model_extended)
+    @api.marshal_with(place_model)
     @api.response(404, 'Place not found')
     def get(self, place_id):
         """Retrieve a place by its ID."""
@@ -61,7 +58,7 @@ class PlaceResource(Resource):
         else:
             api.abort(404, "Place not found")
 
-    @api.expect(place_model)
+    @api.expect(place_model, validate=True)
     @api.response(204, 'Place successfully updated')
     @api.response(400, 'Invalid request')
     @api.response(404, 'Place not found')
