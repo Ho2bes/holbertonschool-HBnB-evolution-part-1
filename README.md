@@ -69,32 +69,64 @@ HBnB Evolution is a web application inspired by AirBnB, developed in Python with
 - **GET /countries/{country_code}** : Retrieve a country by its code.
 - **GET /countries/{country_code}/cities** : Retrieve all cities in a country.
 
+## 📝 Prerequisites
+
+Before starting, ensure you have the following installed on your machine:
+
+- Python 3.9+
+- pip (Python package installer)
+- Docker (optional, for containerization)
+
+## 💿 Installation
+
+Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/Ho2bes/holbertonschool-hbnb/
+
+cd holbertonschool-hbnb
+```
+if you're not using docker :
+
+-   Install the required Python dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+-   To start the Flask server locally, run the following command:
+
+    ```bash
+    python3 main.py
+    ```
+
+    The server will be accessible at [`http://127.0.0.1:5001/`](http://127.0.0.1:5001/).
+
 ## 🐋 Docker
 
 To containerize the application with Docker:
 
 1. Build the Docker image:
     ```bash
-    docker build -t hbnb-evolution .
+    docker build -t holbertonschool-hbnb .
     ```
 
 2. Run the Docker container:
     ```
-    docker run -d -p 8001:8000 -v $(pwd)/data:/app/data --name my-flask-container -e PORT=8000 hbnb-evolution
+    docker run -d -p 8001:8000 -v $(pwd)/data:/app/data --name hbnb_container -e PORT=8000 holbertonschool-hbnb
     ```
 3. Click on this link :
 
-    ## [Best Hbnb site in the world !!](http://localhost:8001/)
+    ## [🏡 Best Hbnb site in the world !!](http://localhost:8001/)
 
 ## ✅ Tests
 
 To run the unit tests, use the following command:
 
+
 ```
-    python3 -m unittest discover -s tests
+python3 -m unittest discover -s tests
 ```
 
-Make sure all tests pass before deploying or modifying the code.
 
 ## 🗺️ UML Diagram
 
@@ -107,4 +139,4 @@ Make sure all tests pass before deploying or modifying the code.
 - [Tifenn Guérin](https://github.com/GuerinTifenn/)
 
 ---
-This project is developed as part of the Holberton School curriculum. For more information, please visit [Holberton School](https://www.holbertonschool.com).
+This project is developed as part of the Holberton School curriculum. For more information, please visit [Holberton School](https://www.holbertonschool.com). Thank You Javier Valenzani.
