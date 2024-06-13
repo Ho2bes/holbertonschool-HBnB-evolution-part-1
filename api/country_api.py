@@ -17,6 +17,7 @@ country_model = api.model('Country', {
     'updated_at': fields.DateTime(description='Last update date')
 })
 
+
 @api.route('/')
 class Countries(Resource):
     @api.marshal_list_with(country_model)
@@ -32,8 +33,12 @@ class Countries(Resource):
         """Create a new country."""
         new_country_data = request.json
         country_id = data_manager.save_country(new_country_data)
-        response_message = {'message': 'Country successfully created', 'country_id': country_id}
+        response_message = {
+            'message': 'Country successfully created',
+            'country_id': country_id
+        }
         return response_message, 201
+
 
 @api.route('/<string:country_id>')
 class CountryResource(Resource):

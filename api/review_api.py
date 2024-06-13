@@ -20,6 +20,7 @@ review_model = api.model('Review', {
     'updated_at': fields.DateTime(description='Last update date')
 })
 
+
 @api.route('/')
 class Reviews(Resource):
     @api.marshal_list_with(review_model)
@@ -35,8 +36,12 @@ class Reviews(Resource):
         """Create a new review."""
         new_review_data = request.json
         review_id = data_manager.save_review(new_review_data)
-        response_message = {'message': 'Review successfully created', 'review_id': review_id}
+        response_message = {
+            'message': 'Review successfully created',
+            'review_id': review_id
+        }
         return response_message, 201
+
 
 @api.route('/<string:review_id>')
 class ReviewResource(Resource):

@@ -18,6 +18,7 @@ city_model = api.model('City', {
     'updated_at': fields.DateTime(description='Last update date')
 })
 
+
 @api.route('/')
 class Cities(Resource):
     @api.marshal_list_with(city_model)
@@ -33,8 +34,12 @@ class Cities(Resource):
         """Create a new city."""
         new_city_data = request.json
         city_id = data_manager.save_city(new_city_data)
-        response_message = {'message': 'City successfully created', 'city_id': city_id}
+        response_message = {
+            'message': 'City successfully created',
+            'city_id': city_id
+        }
         return response_message, 201
+
 
 @api.route('/<string:city_id>')
 class CityResource(Resource):
