@@ -65,4 +65,3 @@ class CountryResource(Resource):
             return '', 204
         else:
             api.abort(404, "Pays non trouvé")
-
