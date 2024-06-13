@@ -1,14 +1,12 @@
-# test2/test_amenity_repository.py
-
 import unittest
 import sys
 import os
+from model.amenity import Amenity
+from persistence.amenity_repository import AmenityRepository
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.amenity import Amenity
-from persistence.amenity_repository import AmenityRepository
 
 class TestAmenityRepository(unittest.TestCase):
 
@@ -39,6 +37,7 @@ class TestAmenityRepository(unittest.TestCase):
         self.repo.save(amenity)
         self.repo.delete(amenity.amenity_id)
         self.assertIsNone(self.repo.get(amenity.amenity_id))
+
 
 if __name__ == '__main__':
     unittest.main()

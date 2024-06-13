@@ -3,11 +3,11 @@
 import unittest
 import sys
 import os
+from model.amenity import Amenity
 
 # Ajoutez le répertoire parent au PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.amenity import Amenity
 
 class TestAmenity(unittest.TestCase):
 
@@ -23,6 +23,7 @@ class TestAmenity(unittest.TestCase):
         amenity_dict = amenity.to_dict()
         self.assertEqual(amenity_dict['name'], 'WiFi')
         self.assertEqual(amenity_dict['amenity_id'], amenity.amenity_id)
+
 
 if __name__ == '__main__':
     unittest.main()

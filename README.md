@@ -79,16 +79,16 @@ To containerize the application with Docker:
     ```
 
 2. Run the Docker container:
-    ```bash
-    docker run -p 5000:5000 -v $(pwd)/data:/app/data hbnb-evolution
+    ```
+    docker run -d -p 8001:8000 -v $(pwd)/data:/app/data --name my-flask-container -e PORT=8000 hbnb-evolution
     ```
 
 ## Tests
 
 To run the unit tests, use the following command:
 
-```bash
-python3 -m unittest discover -s . -p 'test_*.py'
+```
+    python3 -m unittest discover -s tests
 ```
 
 Make sure all tests pass before deploying or modifying the code.
