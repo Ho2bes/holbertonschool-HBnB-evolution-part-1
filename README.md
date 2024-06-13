@@ -2,10 +2,25 @@
 
 Welcome to the HBnB Evolution project. This project is a web application inspired by Airbnb, developed in Python using the Flask framework. This repository contains the backend API source code, including the management of users, places, amenities, reviews, countries, and cities.
 
+## Table of Contents
+
+- [Description 📖](#description)
+- [Project Structure 📂](#project-structure)
+- [Models 🌟](#models)
+- [Endpoints 🔥](#endpoints)
+- [Prerequisites 📝](#prerequisites)
+- [Installation 💿](#installation)
+- [Docker 🐋](#docker)
+- [Tests ✅](#tests)
+- [UML Diagram 🗺️](#uml-diagram)
+- [Authors 🧪](#authors)
+
+<a name="description"></a>
 ## Description 📖
 
 The HBnB Evolution API allows managing entities such as users, places, amenities, reviews, countries, and cities. It provides RESTful endpoints to create, read, update, and delete these entities. The API is built using Flask and Flask-RESTx for easy endpoint documentation and manipulation.
 
+<a name="project-structure"></a>
 ## Project Structure 📂
 
 - **api/** : Contains the routes and controllers for the different models.
@@ -15,6 +30,7 @@ The HBnB Evolution API allows managing entities such as users, places, amenities
 - **Dockerfile** : For containerizing the application with Docker.
 - **requirements.txt** : List of Python dependencies.
 
+<a name="models"></a>
 ## Models 🌟
 
 - **User** : Represents a user of the application.
@@ -24,6 +40,7 @@ The HBnB Evolution API allows managing entities such as users, places, amenities
 - **City** : Represents a city where places are located.
 - **Country** : Represents a country that contains cities.
 
+<a name="endpoints"></a>
 ## Endpoints 🔥
 
 ### User
@@ -73,6 +90,7 @@ The HBnB Evolution API allows managing entities such as users, places, amenities
 - **GET /countries/{country_code}** : Retrieve a country by its code.
 - **GET /countries/{country_code}/cities** : Retrieve all cities in a country.
 
+<a name="prerequisites"></a>
 ## Prerequisites 📝
 
 Before starting, ensure you have the following installed on your machine:
@@ -81,55 +99,68 @@ Before starting, ensure you have the following installed on your machine:
 - pip (Python package installer)
 - Docker (optional, for containerization)
 
+<a name="installation"></a>
 ## Installation 💿
 
 Clone this repository to your local machine:
 
-```
+```sh
 git clone https://github.com/Ho2bes/holbertonschool-hbnb/
 
 cd holbertonschool-hbnb
 ```
+
 If you're not using Docker:
 
 - Install the required Python dependencies:
-    ```
-    pip install -r requirements.txt
-    ```
+
+  ```sh
+  pip install -r requirements.txt
+  ```
 
 - To start the Flask server locally, run the following command:
-    ```
-    python3 main.py
-    ```
-    The server will be accessible at [`http://127.0.0.1:5001/`](http://127.0.0.1:5001/).
 
+  ```sh
+  python3 main.py
+  ```
+
+  The server will be accessible at [`http://127.0.0.1:5001/`](http://127.0.0.1:5001/).
+
+<a name="docker"></a>
 ## Docker 🐋
 
 To containerize the application with Docker:
 
 1. Build the Docker image:
-    ```
-    docker build -t holbertonschool-hbnb .
-    ```
+
+   ```sh
+   docker build -t holbertonschool-hbnb .
+   ```
 
 2. Run the Docker container:
-    ```
-    docker run -d -p 8001:8000 -v $(pwd)/data:/app/data --name hbnb_container -e PORT=8000 holbertonschool-hbnb
-    ```
-3. Click on this link:
-    ## [🏡 Best Hbnb site in the world !!](http://localhost:8001/)
 
+   ```sh
+   docker run -d -p 8001:8000 -v $(pwd)/data:/app/data --name hbnb_container -e PORT=8000 holbertonschool-hbnb
+   ```
+
+3. Click on this link:
+   ## [🏡 Best Hbnb site in the world !!](http://localhost:8001/)
+
+<a name="tests"></a>
 ## Tests ✅
 
 To run the unit tests, use the following command:
-```
+
+```sh
 python3 -m unittest discover -s tests
 ```
 
+<a name="uml-diagram"></a>
 ## UML Diagram 🗺️
 
 ![UML Diagram](./uml_diagram.png)
 
+<a name="authors"></a>
 ## Authors 🧪
 
 - [Nicolas Brault Domingo](https://github.com/Ho2bes/)
@@ -137,4 +168,5 @@ python3 -m unittest discover -s tests
 - [Tifenn Guérin](https://github.com/GuerinTifenn/)
 
 ---
-This project is developed as part of the Holberton School curriculum. For more information, please visit [Holberton School](https://www.holbertonschool.com).
+
+This project is developed as part of the Holberton School curriculum. For more information, please visit [Holberton School](https://www.holbertonschool.com). Thank you, Javier Valenzani.
