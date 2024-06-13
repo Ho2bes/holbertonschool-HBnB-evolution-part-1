@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-
-
-# Model for representing countries
-
+"""Model for representing countries"""
 
 from datetime import datetime
 import uuid

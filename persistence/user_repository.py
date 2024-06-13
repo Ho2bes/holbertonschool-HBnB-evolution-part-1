@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-# Persistence for users
+"""Persistence for users"""
 
 from datetime import datetime
-from model.user import User
 from persistence.ipersistence_manager import IPersistenceManager
 
 

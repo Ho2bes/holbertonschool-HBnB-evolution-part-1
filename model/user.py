@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-
-
-# Model for representing users
-
+"""Model for representing users"""
 
 from datetime import datetime
 import uuid

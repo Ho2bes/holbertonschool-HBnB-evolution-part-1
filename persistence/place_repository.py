@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-# Persistence for places
+"""Persistence for places"""
 
 from datetime import datetime
-from model.place import Place
 from persistence.ipersistence_manager import IPersistenceManager
 
 

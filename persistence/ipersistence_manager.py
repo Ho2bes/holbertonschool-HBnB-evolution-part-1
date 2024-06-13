@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Abstract base class for persistence managers
+"""Abstract base class for persistence managers"""
 
 from abc import ABC, abstractmethod
 

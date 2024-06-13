@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-
-
-# Model for representing places
+"""Model for representing places"""
 
 from datetime import datetime
 import uuid

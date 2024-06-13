@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+"""Initialize Flask app and Flask-RESTx API"""
 
 
-# Initialize Flask app and Flask-RESTx API
 from flask import Flask
 from flask_restx import Api
 from api.place_api import api as place_ns

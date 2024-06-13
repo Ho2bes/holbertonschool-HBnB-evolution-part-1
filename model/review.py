@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-
-
-# Model for representing reviews
-
+"""Model for representing reviews"""
 
 from datetime import datetime
 import uuid

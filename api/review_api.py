@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# API for managing reviews
+"""API for managing reviews"""
 
 from flask import request
 from flask_restx import Namespace, Resource, fields

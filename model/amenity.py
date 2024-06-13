@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-
-
-# Model for representing amenities
-
+"""Model for representing amenities"""
 
 from datetime import datetime
 import uuid

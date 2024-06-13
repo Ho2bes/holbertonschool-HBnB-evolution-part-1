@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-# Persistence for cities
+"""Persistence for cities"""
 
 from datetime import datetime
-from model.city import City
 from persistence.ipersistence_manager import IPersistenceManager
 
 

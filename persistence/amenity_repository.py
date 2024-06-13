@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-# Persistence for amenities
+"""Persistence for amenities"""
 
 from datetime import datetime
-from model.amenity import Amenity
 from persistence.ipersistence_manager import IPersistenceManager
 
 

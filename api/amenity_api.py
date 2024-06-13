@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# API for managing amenities
+"""API for managing amenities"""
 
 
 from flask import request
