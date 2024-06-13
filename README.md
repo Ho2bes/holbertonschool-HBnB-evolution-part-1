@@ -1,8 +1,8 @@
-# HBnB Evolution
+# 🏠 HBnB Evolution
 
 HBnB Evolution is a web application inspired by AirBnB, developed in Python with Flask. This application allows for the management of users, places, reviews, amenities, cities, and countries.
 
-## Project Structure
+## 📂 Project Structure
 
 - **api/** : Contains the routes and controllers for the different models.
 - **model/** : Contains the data models representing the entities.
@@ -11,7 +11,7 @@ HBnB Evolution is a web application inspired by AirBnB, developed in Python with
 - **Dockerfile** : For containerizing the application with Docker.
 - **requirements.txt** : List of Python dependencies.
 
-## Models
+## 🌟 Models
 
 - **User** : Represents a user of the application.
 - **Place** : Represents a place available for rent.
@@ -20,7 +20,7 @@ HBnB Evolution is a web application inspired by AirBnB, developed in Python with
 - **City** : Represents a city where places are located.
 - **Country** : Represents a country that contains cities.
 
-## Endpoints
+## 🔥 Endpoints
 
 ### User
 
@@ -69,7 +69,7 @@ HBnB Evolution is a web application inspired by AirBnB, developed in Python with
 - **GET /countries/{country_code}** : Retrieve a country by its code.
 - **GET /countries/{country_code}/cities** : Retrieve all cities in a country.
 
-## Docker
+## 🐋 Docker
 
 To containerize the application with Docker:
 
@@ -86,7 +86,7 @@ To containerize the application with Docker:
 
     ## [Best Hbnb site in the world !!](http://localhost:8001/)
 
-## Tests
+## ✅ Tests
 
 To run the unit tests, use the following command:
 
@@ -96,11 +96,11 @@ To run the unit tests, use the following command:
 
 Make sure all tests pass before deploying or modifying the code.
 
-## UML Diagram
+## 🗺️ UML Diagram
 
 ![UML Diagram](./uml_diagram.png)
 
-## Authors
+## 🧪 Authors
 
 - [Nicolas Brault Domingo](https://github.com/Ho2bes/)
 - [Francia Ramarolahy](https://github.com/Francianeny/)
