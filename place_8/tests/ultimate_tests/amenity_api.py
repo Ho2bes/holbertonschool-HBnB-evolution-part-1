@@ -1,71 +1,63 @@
-#!/usr/bin/python3
-# API for managing amenities
+from flask import Blueprint, request
+from flask_restx import Api, Resource, fields
+from model.amenity import Amenity
+from persistence.amenity_repository import AmenityRepository
 
-from flask import request
-from flask_restx import Namespace, Resource, fields
-from data_manager import DataManager
+# Create a blueprint for the amenity API
+amenity_blueprint = Blueprint('amenity_api', __name__)
+api = Api(amenity_blueprint)
 
-api = Namespace('amenities', description='Amenity related operations')
+amenity_repository = AmenityRepository()
 
-data_manager = DataManager()
-
-# Data model for creating an amenity
+# Define the amenity model
 amenity_model = api.model('Amenity', {
-    'amenity_id': fields.String(description='Amenity ID'),
+    'amenity_id': fields.String(readOnly=True, description='The unique identifier of an amenity'),
     'name': fields.String(required=True, description='Amenity name'),
-    'created_at': fields.DateTime(description='Creation date'),
-    'updated_at': fields.DateTime(description='Last update date')
+    'created_at': fields.DateTime(readOnly=True, description='The time the amenity was created'),
+    'updated_at': fields.DateTime(readOnly=True, description='The time the amenity was last updated')
 })
 
-@api.route('/')
-class Amenities(Resource):
+@api.route('/amenities')
+class AmenityList(Resource):
     @api.marshal_list_with(amenity_model)
     def get(self):
-        """Retrieve all amenities."""
-        all_amenities = data_manager.get_all_amenities()
-        return all_amenities
+        """List all amenities"""
+        return amenity_repository.get_all()
 
-    @api.expect(amenity_model, validate=True)
-    @api.response(201, 'Amenity successfully created')
-    @api.response(400, 'Invalid request')
+    @api.expect(amenity_model)
+    @api.response(201, 'Amenity successfully created.')
     def post(self):
-        """Create a new amenity."""
-        new_amenity_data = request.json
-        amenity_id = data_manager.save_amenity(new_amenity_data)
-        response_message = {'message': 'Amenity successfully created', 'amenity_id': amenity_id}
-        return response_message, 201
+        """Create a new amenity"""
+        data = request.json
+        amenity = Amenity(**data)
+        amenity_id = amenity_repository.save(amenity)
+        return {'amenity_id': amenity_id}, 201
 
-@api.route('/<string:amenity_id>')
+@api.route('/amenities/<string:amenity_id>')
+@api.response(404, 'Amenity not found.')
 class AmenityResource(Resource):
     @api.marshal_with(amenity_model)
-    @api.response(404, 'Amenity not found')
     def get(self, amenity_id):
-        """Retrieve an amenity by its ID."""
-        amenity_data = data_manager.get_amenity(amenity_id)
-        if amenity_data:
-            return amenity_data
-        else:
-            api.abort(404, "Amenity not found")
+        """Fetch an amenity by its ID"""
+        amenity = amenity_repository.get(amenity_id)
+        if amenity:
+            return amenity
+        api.abort(404, 'Amenity not found.')
 
-    @api.expect(amenity_model, validate=True)
-    @api.response(204, 'Amenity successfully updated')
-    @api.response(400, 'Invalid request')
-    @api.response(404, 'Amenity not found')
+    @api.expect(amenity_model)
+    @api.response(204, 'Amenity successfully updated.')
     def put(self, amenity_id):
-        """Update an existing amenity."""
-        new_amenity_data = request.json
-        updated = data_manager.update_amenity(amenity_id, new_amenity_data)
+        """Update an amenity by its ID"""
+        data = request.json
+        updated = amenity_repository.update(amenity_id, data)
         if updated:
             return '', 204
-        else:
-            api.abort(404, "Amenity not found")
+        api.abort(404, 'Amenity not found.')
 
-    @api.response(204, 'Amenity successfully deleted')
-    @api.response(404, 'Amenity not found')
+    @api.response(204, 'Amenity successfully deleted.')
     def delete(self, amenity_id):
-        """Delete an existing amenity."""
-        deleted = data_manager.delete_amenity(amenity_id)
+        """Delete an amenity by its ID"""
+        deleted = amenity_repository.delete(amenity_id)
         if deleted:
             return '', 204
-        else:
-            api.abort(404, "Amenity not found")
+        api.abort(404, 'Amenity not found.')

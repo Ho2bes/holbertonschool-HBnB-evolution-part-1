@@ -96,3 +96,37 @@ class DataManager:
         return self.amenity_repository.get_all()
 
     # Methods for Country
+    def save_country(self, country_data):
+        country = Country(**country_data)
+        self.country_repository.save(country)
+        return country.country_id
+
+    def get_country(self, country_id):
+        return self.country_repository.get(country_id)
+
+    def update_country(self, country_id, new_data):
+        return self.country_repository.update(country_id, new_data)
+
+    def delete_country(self, country_id):
+        return self.country_repository.delete(country_id)
+
+    def get_all_countries(self):
+        return self.country_repository.get_all()
+
+    # Methods for City
+    def save_city(self, city_data):
+        city = City(**city_data)
+        self.city_repository.save(city)
+        return city.city_id
+
+    def get_city(self, city_id):
+        return self.city_repository.get(city_id)
+
+    def update_city(self, city_id, new_data):
+        return self.city_repository.update(city_id, new_data)
+
+    def delete_city(self, city_id):
+        return self.city_repository.delete(city_id)
+
+    def get_all_cities(self):
+        return self.city_repository.get_all()
