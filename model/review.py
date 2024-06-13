@@ -1,8 +1,12 @@
 #!/usr/bin/python3
+
+
 # Model for representing reviews
+
 
 from datetime import datetime
 import uuid
+
 
 class Review:
     """Class representing a review."""

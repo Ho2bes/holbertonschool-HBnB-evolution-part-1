@@ -1,8 +1,12 @@
 #!/usr/bin/python3
+
+
 # Model for representing users
+
 
 from datetime import datetime
 import uuid
+
 
 class User:
     """Class representing a user."""

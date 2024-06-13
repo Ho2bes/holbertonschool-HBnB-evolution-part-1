@@ -1,8 +1,12 @@
 #!/usr/bin/python3
+
+
 # Model for representing countries
+
 
 from datetime import datetime
 import uuid
+
 
 class Country:
     """Class representing a country."""

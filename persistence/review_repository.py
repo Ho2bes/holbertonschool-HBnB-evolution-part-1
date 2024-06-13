@@ -5,6 +5,7 @@ from datetime import datetime
 from model.review import Review
 from persistence.ipersistence_manager import IPersistenceManager
 
+
 class ReviewRepository(IPersistenceManager):
     """Class for managing the persistence of reviews."""
     def __init__(self):

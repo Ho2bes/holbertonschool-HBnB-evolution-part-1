@@ -5,6 +5,7 @@ from datetime import datetime
 from model.country import Country
 from persistence.ipersistence_manager import IPersistenceManager
 
+
 class CountryRepository(IPersistenceManager):
     """Class for managing the persistence of countries."""
     def __init__(self):

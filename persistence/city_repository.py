@@ -5,6 +5,7 @@ from datetime import datetime
 from model.city import City
 from persistence.ipersistence_manager import IPersistenceManager
 
+
 class CityRepository(IPersistenceManager):
     """Class for managing the persistence of cities."""
     def __init__(self):

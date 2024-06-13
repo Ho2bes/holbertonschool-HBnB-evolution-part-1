@@ -5,6 +5,7 @@ from datetime import datetime
 from model.place import Place
 from persistence.ipersistence_manager import IPersistenceManager
 
+
 class PlaceRepository(IPersistenceManager):
     """Class for managing the persistence of places."""
     def __init__(self):

@@ -14,6 +14,7 @@ from model.amenity import Amenity
 from model.country import Country
 from model.city import City
 
+
 class DataManager:
     def __init__(self):
         self.place_repository = PlaceRepository()

@@ -1,12 +1,17 @@
 #!/usr/bin/python3
+
+
 # Model for representing places
 
 from datetime import datetime
 import uuid
 
+
 class Place:
     """Class representing a place."""
-    def __init__(self, name, description, address, city_id, latitude, longitude, host_id, number_of_rooms, number_of_bathrooms, price_per_night, max_guests, amenity_ids):
+    def __init__(self, name, description, address, city_id, latitude,
+                 longitude, host_id, number_of_rooms, number_of_bathrooms,
+                 price_per_night, max_guests, amenity_ids):
         self.place_id = str(uuid.uuid4())
         self.name = name
         self.description = description

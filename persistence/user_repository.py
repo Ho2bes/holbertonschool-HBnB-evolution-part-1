@@ -5,6 +5,7 @@ from datetime import datetime
 from model.user import User
 from persistence.ipersistence_manager import IPersistenceManager
 
+
 class UserRepository(IPersistenceManager):
     """Class for managing the persistence of users."""
     def __init__(self):

@@ -1,8 +1,12 @@
 #!/usr/bin/python3
+
+
 # Model for representing amenities
+
 
 from datetime import datetime
 import uuid
+
 
 class Amenity:
     """Class representing an amenity."""

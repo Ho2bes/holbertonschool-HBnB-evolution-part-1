@@ -5,6 +5,7 @@ from datetime import datetime
 from model.amenity import Amenity
 from persistence.ipersistence_manager import IPersistenceManager
 
+
 class AmenityRepository(IPersistenceManager):
     """Class for managing the persistence of amenities."""
     def __init__(self):

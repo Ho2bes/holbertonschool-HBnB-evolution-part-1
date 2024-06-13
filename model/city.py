@@ -1,8 +1,12 @@
 #!/usr/bin/python3
+
+
 # Model for representing cities
+
 
 from datetime import datetime
 import uuid
+
 
 class City:
     """Class representing a city."""
