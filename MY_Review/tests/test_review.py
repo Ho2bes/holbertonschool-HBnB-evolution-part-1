@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import unittest
-from MY_Review.model.review import Review  # Import correct depuis MY_Review.model
+from place_7.model.review import Review  # Import correct depuis MY_Review.model
 
 class TestReview(unittest.TestCase):
     def setUp(self):

@@ -5,6 +5,7 @@ import json
 import sys
 import os
 from unittest.mock import patch
+from place_7.model.review import Review  # Import correct depuis MY_Review.api
 
 # Ajouter le chemin du répertoire racine pour importer 'app'
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
