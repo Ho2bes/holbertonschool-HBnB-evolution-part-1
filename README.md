@@ -73,7 +73,7 @@ HBnB Evolution is a web application inspired by AirBnB, developed in Python with
 
 Before starting, ensure you have the following installed on your machine:
 
-- Python 3.9+
+- Python 3.8+
 - pip (Python package installer)
 - Docker (optional, for containerization)
 
@@ -81,7 +81,7 @@ Before starting, ensure you have the following installed on your machine:
 
 Clone this repository to your local machine:
 
-```bash
+```
 git clone https://github.com/Ho2bes/holbertonschool-hbnb/
 
 cd holbertonschool-hbnb
@@ -89,13 +89,13 @@ cd holbertonschool-hbnb
 if you're not using docker :
 
 -   Install the required Python dependencies:
-    ```bash
+    ```
     pip install -r requirements.txt
     ```
 
 -   To start the Flask server locally, run the following command:
 
-    ```bash
+    ```
     python3 main.py
     ```
 
@@ -106,7 +106,7 @@ if you're not using docker :
 To containerize the application with Docker:
 
 1. Build the Docker image:
-    ```bash
+    ```
     docker build -t holbertonschool-hbnb .
     ```
 
