@@ -2,19 +2,6 @@
 
 Welcome to the HBnB Evolution project. This project is a web application inspired by Airbnb, developed in Python using the Flask framework. This repository contains the backend API source code, including the management of users, places, amenities, reviews, countries, and cities.
 
-## Table of Contents
-
-- [Description](#description-📖)
-- [Project Structure](#project-structure-📂)
-- [Models](#models-🌟)
-- [Endpoints](#endpoints-🔥)
-- [Prerequisites](#prerequisites-📝)
-- [Installation](#installation-💿)
-- [Docker](#docker-🐋)
-- [Tests](#tests-✅)
-- [UML Diagram](#uml-diagram-🗺️)
-- [Authors](#authors-🧪)
-
 ## Description 📖
 
 The HBnB Evolution API allows managing entities such as users, places, amenities, reviews, countries, and cities. It provides RESTful endpoints to create, read, update, and delete these entities. The API is built using Flask and Flask-RESTx for easy endpoint documentation and manipulation.
