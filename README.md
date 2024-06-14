@@ -169,4 +169,4 @@ python3 -m unittest discover -s tests
 
 ---
 
-This project is developed as part of the Holberton School curriculum. For more information, please visit [Holberton School](https://www.holbertonschool.com). Thank you, Javier Valenzani.
+This project is developed as part of the Holberton School curriculum. For more information, please visit [Holberton School](https://www.holbertonschool.com).
