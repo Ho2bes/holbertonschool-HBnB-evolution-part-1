@@ -163,7 +163,7 @@ python3 -m unittest discover -s tests
 <a name="authors"></a>
 ## Authors 🧪
 
-- [Nicolas Brault Domingo](https://github.com/Ho2bes/)
+- [N. B. Domingo](https://github.com/Ho2bes/)
 - [Francia Ramarolahy](https://github.com/Francianeny/)
 - [Tifenn Guérin](https://github.com/GuerinTifenn/)
 
